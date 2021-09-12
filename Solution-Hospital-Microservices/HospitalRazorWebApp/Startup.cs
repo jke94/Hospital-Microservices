@@ -1,29 +1,37 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace HospitalRazorWebApp
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using HospitalRazorWebApp.ViewModels;
+
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment ennvironment)
         {
             Configuration = configuration;
+            WebHostEnvironment = ennvironment;
         }
 
         public IConfiguration Configuration { get; }
+
+        public IWebHostEnvironment WebHostEnvironment { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            //services.InitializeAllApplicationServices(Configuration, WebHostEnvironment.EnvironmentName);
+
+            services.AddHttpClient("DoctorsService", c =>
+            {
+                c.BaseAddress = new System.Uri(Configuration["Services:Doctors"]);
+            });
+
+            //services.AddTransient<IRepositoryWrapper, RepositoryWrapper>();
+            services.AddTransient<IPatientViewModel, PatientViewModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +48,7 @@ namespace HospitalRazorWebApp
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
