@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ServicesExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,9 @@ namespace Microservice.Doctors
 
         public IConfiguration Configuration { get; }
 
+        public IWebHostEnvironment WebHostEnvironment { get; set; }
+    
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -32,6 +36,9 @@ namespace Microservice.Doctors
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Microservice.Doctors", Version = "v1" });
             });
+
+            // Initalize all services off my application.
+            services.InitializeAllApplicationServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +51,7 @@ namespace Microservice.Doctors
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Microservice.Doctors v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
