@@ -7,6 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HospitalRazorWebApp", "Hosp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Application", "01.Application", "{D540CC93-7831-4148-B2B8-4BC1F99FD122}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Microservices", "02.Microservices", "{C163DC12-0D9C-43B0-9EF6-13FE87DD6B1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.DAL", "03.DAL", "{CBF8EF31-859F-414C-B558-B4412EE09219}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.Model", "04.Model", "{083ED0B0-2C12-4309-BDF8-9F9D107747D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.Services", "05.Services", "{5CA80B45-078B-49CD-B558-CE4F6CF965A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
