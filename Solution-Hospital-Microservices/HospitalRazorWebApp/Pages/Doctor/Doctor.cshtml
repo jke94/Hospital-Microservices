@@ -1,0 +1,53 @@
+﻿@page
+@model HospitalRazorWebApp.Pages.Doctor.DoctorModel
+@{
+    ViewData["Title"] = "Doctor page";
+}
+@using HospitalRazorWebApp.ViewModels
+@inject IPatientViewModel PatientViewModel;
+
+<div class="text-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    DoctorID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Surname
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>
+                    DateBorn
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in PatientViewModel.TestMethod())
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.DoctorID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.DateBorn)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
